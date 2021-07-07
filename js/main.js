@@ -4,6 +4,7 @@ $second = document.getElementById("second");
 $hourInput = document.getElementById("hourInput");
 $minuteInput = document.getElementById("minuteInput");
 $message = document.getElementById("message");
+$setAlarms = document.getElementById("setAlarms");
 
 alarmSound = new Audio("./alarm.mp3");
 alarms = []; // Alarms {hour, minute}
@@ -93,7 +94,7 @@ function set_alarm(e) {
 		}
 	}
 
-	alarms.push({ hour: $hourInput.value, minute: $minuteInput.value });
+	alarms.push({ hour: parseInt($hourInput.value), minute: parseInt($minuteInput.value) });
 	set_message("Alarm set!");
 	clear_form();
 	return false;
@@ -102,7 +103,6 @@ function set_alarm(e) {
 /** Check to see if any alarm is ready, execute and pop if true */
 function check_alarms() {
 	window.setInterval(function () {
-		console.log("Checking alarms", alarms);
 		if (alarms.length) {
 			const d = new Date();
 
@@ -110,17 +110,32 @@ function check_alarms() {
 			// Check for alarm to go off
 			for (let i = 0; i < alarms.length; i++) {
 				if (alarms[i].hour === currentTime.hour && alarms[i].minute === currentTime.minute) {
-					console.log("alarm current", alarms[i]);
 					alarms.splice(i, 1);
 					alarmSound.play();
 					alert("Brrrrrrrring brrrrrring!");
 					break;
-				} else {
-					console.log("not current", alarms[i]);
 				}
 			}
 		}
 	}, 1000);
+}
+
+/** Update alarm list */
+function update_alarms() {
+	window.setInterval(function () {
+		$setAlarms.innerHTML = "";
+		if (!alarms) return;
+
+		// Populate alarm list
+		for (let i = 0; i < alarms.length; i++) {
+			// Create hour and minute strings
+			const hour = alarms[i].hour < 10 ? "0" + alarms[i].hour : alarms[i].hour;
+			const minute = alarms[i].minute < 10 ? "0" + alarms[i].minute : alarms[i].minute;
+			const setAlarm = document.createElement("P");
+			setAlarm.innerHTML = hour + " : " + minute;
+			$setAlarms.appendChild(setAlarm);
+		}
+	}, 100);
 }
 
 /** Set message (form errors/success) */
@@ -148,6 +163,7 @@ function clear_form() {
 /** Alarm clock controller */
 function main() {
 	update_clock();
+	update_alarms();
 	check_alarms();
 	return;
 }

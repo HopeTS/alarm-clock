@@ -30,6 +30,11 @@
 			<div class="messageBox">
 				<p id="message"></p>
 			</div>
+
+			<div class="alarms">
+				<h2>Set alarms: </h2>
+				<div id="setAlarms"></div>
+			</div>
 		</div>
 		<script src="./js/main.js" defer></script>
 
@@ -48,6 +53,11 @@
 			h1 {
 				text-align: center;
 				margin-top: 3rem;
+			}
+
+			h2 {
+				margin: 0 auto;
+				text-align: center;
 			}
 
 			.content {
@@ -126,6 +136,17 @@
 
 			.messageBox {
 				text-align: center;
+				margin: 1.5em auto;
+			}
+
+			.alarms {
+				display: flex;
+				flex-direction: column;
+				text-align: center;
+			}
+
+			#setAlarms {
+				margin-top: 1.5em;
 			}
 		</style>
 	</body>
