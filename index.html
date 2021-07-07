@@ -1,0 +1,132 @@
+<html>
+	<head>
+		<title>Alarm clock</title>
+	</head>
+	<body>
+		<div class="content">
+			<h1>Alarm Clock</h1>
+			<div class="alarmClock">
+				<span class="hour" id="hour">00</span>
+				<span>:</span>
+				<span class="minute" id="minute">00</span>
+				<span>:</span>
+				<span class="second" id="second">00</span>
+			</div>
+
+			<form class="setAlarm" class="setAlarm" id="setAlarm">
+				<div class="formInput">
+					<label for="hourInput">Hour (military)</label>
+					<input type="number" name="hourInput" id="hourInput" />
+				</div>
+
+				<div class="formInput">
+					<label for="minuteInput">Minute</label>
+					<input type="number" name="minuteInput" id="minuteInput" />
+				</div>
+
+				<button onclick="return set_alarm(event)">Set Alarm</button>
+			</form>
+
+			<div class="messageBox">
+				<p id="message"></p>
+			</div>
+		</div>
+		<script src="./js/main.js" defer></script>
+
+		<style>
+			@font-face {
+				font-family: "clock";
+				src: url("./clock.ttf");
+			}
+
+			html {
+				font-family: sans-serif;
+				background: #0e0e18;
+				color: white;
+			}
+
+			h1 {
+				text-align: center;
+				margin-top: 3rem;
+			}
+
+			.content {
+				display: flex;
+				justify-content: center;
+				flex-direction: column;
+				margin: 1.5em auto;
+			}
+
+			.alarmClock {
+				background: #080808;
+				padding: 1rem;
+				border-radius: 8px;
+				margin: 1.5em auto;
+				width: 340px;
+				display: flex;
+				flex-direction: row;
+				justify-content: space-evenly;
+			}
+
+			.alarmClock span {
+				color: red;
+				font-family: "clock";
+				font-size: 6rem;
+			}
+
+			.formInput {
+				width: 130px;
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+			}
+
+			form {
+				margin: 1.5em auto;
+				display: inline-flex;
+				flex-wrap: wrap;
+				justify-content: space-evenly;
+				width: 300px;
+				flex-direction: row;
+			}
+
+			button {
+				margin-top: 16px;
+				font-size: 1.2rem;
+				width: 200px;
+				padding: 14px;
+				border-radius: 8px;
+				border: 0;
+				background: #121240;
+				border-bottom: 8px solid #040413;
+				color: white;
+				font-size: bold;
+				cursor: pointer;
+			}
+
+			button:active {
+				margin-top: 24px;
+				border-bottom: 0;
+			}
+
+			label {
+				text-align: center;
+			}
+
+			input {
+				background: rgba(0, 0, 0, 0.5);
+				border: 0;
+				border-radius: 6px;
+				font-size: 2em;
+				width: 100%;
+				padding: 8px;
+				color: white;
+				text-align: center;
+			}
+
+			.messageBox {
+				text-align: center;
+			}
+		</style>
+	</body>
+</html>
